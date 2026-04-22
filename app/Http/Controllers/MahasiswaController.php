@@ -70,8 +70,10 @@ class MahasiswaController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Mahasiswa $mahasiswa)
+    public function destroy(\App\Models\Mahasiswa $mahasiswa)
     {
-        //
+    $mahasiswa->delete();
+
+    return redirect('/mahasiswa')->with('success', 'Data berhasil dihapus');
     }
 }
