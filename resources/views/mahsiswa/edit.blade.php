@@ -1,29 +1,56 @@
-<form action="{{ action([App\Http\Controllers\MahasiswaController:
-    :class, 'update'], [$mahasiswa->id]) }}"  method="post">
-    @csrf
-    <input type="hidden" name="_method" value="PUT">
-    <table>
-        <tr>
-            <td>Nama Lengkap</td><td>:</td><td><input type="text" name="fullname" value="{{$mahasiswa->fullname}}"></td>
-        </tr>
-        <tr>
-            <td>Nomor Induk Mahasiswa</td><td>:</td><td><input type="text" name="NIM" value="{{$mahasiswa->NIM}}"></td>
-        </tr>
-        <tr>
-            <td>Nomor Induk Siswa Nasional</td><td>:</td><td><input type="text" name="NIDN" value="{{$mahasiswa->NIDN}}"></td>
-        </tr>
-        <tr>
-            <td>Tempat Lahir</td><td>:</td><td><input type="text" name="tempat_lahir" value="{{$mahasiswa->tempat_lahir}}"></td>
-        </tr>
-        <tr>
-            <td>Tanggal Lahir</td><td>:</td><td><input type="text" name="tanggal_lahir" value="{{$mahasiswa->tanggal_lahir}}"></td>
-        </tr>
-        <tr>
-            <td>Alamat</td><td>:</td><td><textarea name="alamat">{{$mahasiswa->alamat}}</textarea></td>
-        </tr>
-        <tr>
-            <td colspan="3" style="text-align: center;"><input type="submit" value="Update">
-            <input type="reset" value="Clear"></td>
-        </tr>
-    </table>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Mahasiswa</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h3 class="mb-4">Edit Data Mahasiswa</h3>
+
+    <a href="{{ url('mahasiswa') }}" class="btn btn-primary mb-3">Kembali</a>
+
+    <form action="{{ action([App\Http\Controllers\MahasiswaController::class, 'update'], $mahasiswa->id) }}" method="post">
+        @csrf
+        @method('PUT')
+
+        <div class="mb-3">
+            <label class="form-label">Nama Lengkap</label>
+            <input type="text" name="fullname" class="form-control" value="{{ $mahasiswa->fullname }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">NIM</label>
+            <input type="text" name="NIM" class="form-control" value="{{ $mahasiswa->NIM }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">NIDN</label>
+            <input type="text" name="NIDN" class="form-control" value="{{ $mahasiswa->NIDN }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Tempat Lahir</label>
+            <input type="text" name="tempat_lahir" class="form-control" value="{{ $mahasiswa->tempat_lahir }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Tanggal Lahir</label>
+            <input type="date" name="tanggal_lahir" class="form-control" value="{{ $mahasiswa->tanggal_lahir }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Alamat</label>
+            <textarea name="alamat" class="form-control">{{ $mahasiswa->alamat }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </form>
+</div>
+
+</body>
+</html>
